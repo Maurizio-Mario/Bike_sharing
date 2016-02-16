@@ -1,14 +1,14 @@
 {
-    "contents" : "---\ntitle: \"Washington Bike Sharing Service\"\nauthor: \"Maurizio Murino\"\ndate: \"16 February 2016\"\noutput: html_document\n---\n\n```",
+    "contents" : "---\ntitle: \"Washington Bike Sharing Service\"\nauthor: \"Maurizio Murino\"\ndate: \"16 February 2016\"\noutput: html_document\n---\n# Introduction\n\nThis project is about the Capital Bikeshare (CaBi) scheme (<http://www.capitalbikeshare.com/>) in Washington DC, launched in 2008 by the government of District of Columbia. In this project, we focus on the operations of CaBi in 2011 and 2012. In the Excel spreadsheet `data.xlsx`, it contains hourly rental data spanning these two years. Two types of rental data were recorded: casual\nrenters and registered renters. A registered renter is a pre-registered member of the bike sharing program, while a casual renter pays for the use of a bike on the spot using a credit card. In addition to the time/date information (including holidays), the spreadsheet also records the weather condition in each hour (e.g., temperature, wind speed and humidity).  \n\n# Loading the data\n\nWe are going to load in R the whole Excel workbook. Since it is composed by three separated sheets, the package `XLConnect` come in use. It allow to read the entire workbook, and then load the single worksheets. Please note that `XLConnect` requires Java to be pre-installed. \n\nSince the `work_book` is quite small (1728 bytes) w are going to load in memory every sheet like a separate object.\n\n```{r 1}\nlibrary(XLConnect)\nwork_book <- loadWorkbook(\"raw data.xlsx\") \nobject.size(work_book)\n\nnote <- readWorksheet(work_book, sheet=\"Note\")\nall_data <- readWorksheet(work_book, sheet=\"All data\")\ntesting <- readWorksheet(work_book, sheet=\"Testing\")\n```\n\n# Data description\n\n\n# \"Note\" is the coodebook\n# \"All data\" is main dataset\n# \"Testing\" is a second and smaller dataset on which perform a prevision",
     "created" : 1455645555592.000,
-    "dirty" : true,
-    "encoding" : "",
+    "dirty" : false,
+    "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3918810518",
+    "hash" : "861700670",
     "id" : "D39B9B0F",
-    "lastKnownWriteTime" : 25896131656155233,
-    "path" : null,
-    "project_path" : null,
+    "lastKnownWriteTime" : 1455649837,
+    "path" : "C:/Users/MaurizioLocale/OneDrive/Freelancer/Bike_sharing/Bike_sharing_code.Rmd",
+    "project_path" : "Bike_sharing_code.Rmd",
     "properties" : {
         "tempName" : "Untitled1"
     },

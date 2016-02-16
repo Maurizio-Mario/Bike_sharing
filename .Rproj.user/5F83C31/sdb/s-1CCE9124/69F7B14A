@@ -1,10 +1,10 @@
 {
-    "contents" : "\"XLConnect\" %in% row.names(installed.packages())\ninstall.packages(\"XLConnect\")\nlibrary(XLConnect)\nwork_book <- loadWorkbook(\"mydata.xls\") \n = readWorksheet(wk, sheet=\"Sheet1\")",
+    "contents" : "\"XLConnect\" %in% row.names(installed.packages())\ninstall.packages(\"XLConnect\")\n        library(XLConnect)\nlist.files()\nobject.size(work_book)\n\n# Let's load the whole Excel workbook\nwork_book <- loadWorkbook(\"raw data.xlsx\") \nsummary(work_book)\n\n# The work_book is composed by three sheets, \"Note\", \"All data\", and \"Testing\"\n\n# Now I will rapily check the content of the three sheets.\n# \"Note\" is the coodebook\nstr(readWorksheet(work_book, sheet=\"Note\"))\n# \"All data\" is main dataset\nstr(readWorksheet(work_book, sheet=\"All data\"))\n# \"Testing\" is a second and smaller dataset on which perform a prevision\nstr(readWorksheet(work_book, sheet=\"Testing\"))\n\n\n",
     "created" : 1455645588305.000,
     "dirty" : true,
     "encoding" : "",
     "folds" : "",
-    "hash" : "1417058544",
+    "hash" : "171679297",
     "id" : "69F7B14A",
     "lastKnownWriteTime" : 4211551095965966602,
     "path" : null,

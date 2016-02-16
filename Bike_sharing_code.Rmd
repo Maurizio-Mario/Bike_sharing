@@ -1,0 +1,33 @@
+---
+title: "Washington Bike Sharing Service"
+author: "Maurizio Murino"
+date: "16 February 2016"
+output: html_document
+---
+# Introduction
+
+This project is about the Capital Bikeshare (CaBi) scheme (<http://www.capitalbikeshare.com/>) in Washington DC, launched in 2008 by the government of District of Columbia. In this project, we focus on the operations of CaBi in 2011 and 2012. In the Excel spreadsheet `data.xlsx`, it contains hourly rental data spanning these two years. Two types of rental data were recorded: casual
+renters and registered renters. A registered renter is a pre-registered member of the bike sharing program, while a casual renter pays for the use of a bike on the spot using a credit card. In addition to the time/date information (including holidays), the spreadsheet also records the weather condition in each hour (e.g., temperature, wind speed and humidity).  
+
+# Loading the data
+
+We are going to load in R the whole Excel workbook. Since it is composed by three separated sheets, the package `XLConnect` come in use. It allow to read the entire workbook, and then load the single worksheets. Please note that `XLConnect` requires Java to be pre-installed. 
+
+Since the `work_book` is quite small (1728 bytes) w are going to load in memory every sheet like a separate object.
+
+```{r 1}
+library(XLConnect)
+work_book <- loadWorkbook("raw data.xlsx") 
+object.size(work_book)
+
+note <- readWorksheet(work_book, sheet="Note")
+all_data <- readWorksheet(work_book, sheet="All data")
+testing <- readWorksheet(work_book, sheet="Testing")
+```
+
+# Data description
+
+
+# "Note" is the coodebook
+# "All data" is main dataset
+# "Testing" is a second and smaller dataset on which perform a prevision
