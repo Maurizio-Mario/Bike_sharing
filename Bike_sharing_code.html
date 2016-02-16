@@ -69,11 +69,37 @@ img {
 
 
 <div id="introduction" class="section level1">
-<h1>Introduction</h1>
-<p>This project is about the Capital Bikeshare (CaBi) scheme (<a href="http://www.capitalbikeshare.com/" class="uri">http://www.capitalbikeshare.com/</a>) in Washington DC, launched in 2008 by the government of District of Columbia. In this project, we focus on the operations of CaBi in 2011 and 2012. In the Excel spreadsheet <code>data.xlsx</code>, it contains hourly rental data spanning these two years. Two types of rental data were recorded: casual renters and registered renters. A registered renter is a pre-registered member of the bike sharing program, while a casual renter pays for the use of a bike on the spot using a credit card. In addition to the time/date information (including holidays), the spreadsheet also records the weather condition in each hour (e.g., temperature, wind speed and humidity).</p>
+<h1>1. Introduction</h1>
+<p><em>This project is about the Capital Bikeshare (CaBi) scheme (<a href="http://www.capitalbikeshare.com/" class="uri">http://www.capitalbikeshare.com/</a>) in Washington DC, launched in 2008 by the government of District of Columbia. In this project, we focus on the operations of CaBi in 2011 and 2012. In the Excel spreadsheet <code>data.xlsx</code>, it contains hourly rental data spanning these two years. Two types of rental data were recorded: casual renters and registered renters. A registered renter is a pre-registered member of the bike sharing program, while a casual renter pays for the use of a bike on the spot using a credit card. In addition to the time/date information (including holidays), the spreadsheet also records the weather condition in each hour (e.g., temperature, wind speed and humidity).</em></p>
+</div>
+<div id="loading-the-data" class="section level1">
+<h1>Loading the data</h1>
+<p>We are going to load in R the whole Excel workbook. Since it is composed by three separated sheets, the package <code>XLConnect</code> comes in use. It allow to read the entire workbook, and then load the single worksheets. Please note that <code>XLConnect</code> requires Java to be pre-installed.</p>
+<pre class="r"><code>library(XLConnect)
+work_book &lt;- loadWorkbook(&quot;raw data.xlsx&quot;) </code></pre>
+<p>Since the <code>work_book</code> is quite small (1728 bytes) we are going to load in memory every sheet like a separate object.</p>
+<pre class="r"><code>object.size(work_book)</code></pre>
+<pre><code>## 1728 bytes</code></pre>
+<pre class="r"><code>note &lt;- readWorksheet(work_book, sheet = &quot;Note&quot;)
+all_data &lt;- readWorksheet(work_book, sheet = &quot;All data&quot;)
+testing &lt;- readWorksheet(work_book, sheet = &quot;Testing&quot;)</code></pre>
 </div>
 <div id="data-description" class="section level1">
 <h1>Data description</h1>
+<p>The Excel workbook is composed by three sheets: “Note” is the coodebook, “All data” is the main dataset, “Testing” is a second and smaller dataset.</p>
+<pre class="r"><code>summary(work_book)</code></pre>
+<div id="note" class="section level2">
+<h2>“Note”</h2>
+<p>It is the codebook.</p>
+<pre class="r"><code>str(note)</code></pre>
+<pre><code>## 'data.frame':    22 obs. of  5 variables:
+##  $ Season : chr  &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+##  $ Col2   : chr  &quot;Spring&quot; &quot;Summer&quot; &quot;Autumn&quot; &quot;Winter&quot; ...
+##  $ Col3   : logi  NA NA NA NA NA NA ...
+##  $ Weekday: num  1 2 3 4 5 6 7 NA NA NA ...
+##  $ Col5   : chr  &quot;Monay&quot; &quot;Tuesday&quot; &quot;Wednesday&quot; &quot;Thursday&quot; ...</code></pre>
+<p>It describes how the content of the dataset is coded</p>
+</div>
 </div>
 
 

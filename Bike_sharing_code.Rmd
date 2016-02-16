@@ -4,30 +4,52 @@ author: "Maurizio Murino"
 date: "16 February 2016"
 output: html_document
 ---
-# Introduction
+# 1. Introduction
 
-This project is about the Capital Bikeshare (CaBi) scheme (<http://www.capitalbikeshare.com/>) in Washington DC, launched in 2008 by the government of District of Columbia. In this project, we focus on the operations of CaBi in 2011 and 2012. In the Excel spreadsheet `data.xlsx`, it contains hourly rental data spanning these two years. Two types of rental data were recorded: casual
-renters and registered renters. A registered renter is a pre-registered member of the bike sharing program, while a casual renter pays for the use of a bike on the spot using a credit card. In addition to the time/date information (including holidays), the spreadsheet also records the weather condition in each hour (e.g., temperature, wind speed and humidity).  
+_This project is about the Capital Bikeshare (CaBi) scheme (<http://www.capitalbikeshare.com/>) in Washington DC, launched in 2008 by the government of District of Columbia. In this project, we focus on the operations of CaBi in 2011 and 2012. In the Excel spreadsheet `data.xlsx`, it contains hourly rental data spanning these two years. Two types of rental data were recorded: casual
+renters and registered renters. A registered renter is a pre-registered member of the bike sharing program, while a casual renter pays for the use of a bike on the spot using a credit card. In addition to the time/date information (including holidays), the spreadsheet also records the weather condition in each hour (e.g., temperature, wind speed and humidity)._  
 
-# Loading the data
+# 2. Loading the data
 
-We are going to load in R the whole Excel workbook. Since it is composed by three separated sheets, the package `XLConnect` come in use. It allow to read the entire workbook, and then load the single worksheets. Please note that `XLConnect` requires Java to be pre-installed. 
+We are going to load in R the whole Excel workbook. Since it is composed by three separated sheets, the package `XLConnect` comes in use. It allow to read the entire workbook, and then load the single worksheets. Please note that `XLConnect` requires Java to be pre-installed. 
 
-Since the `work_book` is quite small (1728 bytes) w are going to load in memory every sheet like a separate object.
-
-```{r 1}
+```{r introduction 1, cache=TRUE, results='hide'}
 library(XLConnect)
 work_book <- loadWorkbook("raw data.xlsx") 
-object.size(work_book)
-
-note <- readWorksheet(work_book, sheet="Note")
-all_data <- readWorksheet(work_book, sheet="All data")
-testing <- readWorksheet(work_book, sheet="Testing")
 ```
 
-# Data description
+Since the `work_book` is quite small (1728 bytes) we are going to load in memory every sheet like a separate object.
 
+```{r introduction 2}
+object.size(work_book)
+```
 
-# "Note" is the coodebook
-# "All data" is main dataset
-# "Testing" is a second and smaller dataset on which perform a prevision
+```{r introduction 3, cache=TRUE}
+note <- readWorksheet(work_book, sheet = "Note")
+all_data <- readWorksheet(work_book, sheet = "All data")
+testing <- readWorksheet(work_book, sheet = "Testing")
+```
+
+# 3. Data description
+
+The Excel workbook is composed by three sheets: "Note" is the coodebook, "All data" is the main dataset, "Testing" is a second and smaller dataset.
+
+```{r data description 1, results='hide'}
+summary(work_book)
+```
+
+### 3.1 "Note"
+
+It is the codebook. It describes how the content of the dataset is coded. Specifically, it reports how seasons (`season`) and weekdays (`Weekday`) are numerically coded in the datasets.
+
+```{r data description 2}
+str(note)
+```
+
+###3.2 "all_data"
+
+The dataset `all_data` is composed by 17379 observation with 13 variables. `datetime` is profitably flaked by variables providing further information on the day of the week, the season and if we are talking about a working or a resting day. 
+
+```{r data description 3}
+str(all_data)
+```
