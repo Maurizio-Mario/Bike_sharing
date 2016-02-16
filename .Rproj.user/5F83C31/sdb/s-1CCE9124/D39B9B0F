@@ -1,0 +1,18 @@
+{
+    "contents" : "---\ntitle: \"Washington Bike Sharing Service\"\nauthor: \"Maurizio Murino\"\ndate: \"16 February 2016\"\noutput: html_document\n---\n\n```",
+    "created" : 1455645555592.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3918810518",
+    "id" : "D39B9B0F",
+    "lastKnownWriteTime" : 25896131656155233,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_markdown"
+}

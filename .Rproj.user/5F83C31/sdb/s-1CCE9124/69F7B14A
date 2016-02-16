@@ -1,0 +1,18 @@
+{
+    "contents" : "\"XLConnect\" %in% row.names(installed.packages())\ninstall.packages(\"XLConnect\")\nlibrary(XLConnect)\nwork_book <- loadWorkbook(\"mydata.xls\") \n = readWorksheet(wk, sheet=\"Sheet1\")",
+    "created" : 1455645588305.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1417058544",
+    "id" : "69F7B14A",
+    "lastKnownWriteTime" : 4211551095965966602,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
