@@ -61,3 +61,39 @@ str(all_data)
 ```{r data description 4}
 str(testing)
 ```
+
+#4. Part 1 (50%) - Data exploration
+
+_Use data visualisation to explore the data as much as possible. The top management also welcomed any interesting insights that you might observe from the data. The top management also indicated that they were interested in knowing more about their customers,
+including the behavioural differences between casual renters and registered renters. Although you were only given limited data (not including the data by stations), the top management wondered if the data could reveal any information about the purposes of the bike rentals by casual renters and registered renters._ 
+
+###4.1 Casual renters
+
+In first place we load the `xts` package, that will help us in manage the time series. Then we create a new `xts` object containing the number of casual bike renter along the time horizon considered, that is, from January 1st 2011 and December 31st 2012.
+
+```{r data exploration 1, results='hide'}
+library(xts)
+casual_xts<- xts(all_data$Casual.renter, all_data$datetime)
+```
+
+We think that the weather could be could be a relevat incentive to the use of the bike. Hence, we are going to plot the total number of casual renter per day. The plot could be more readable by plotting their number by week, but we choose this time format in order to make the plots in line with the requests of the second part of the assignment.
+
+**NOTE:** The legend box is too compact to allocate the weather conditions as reported in `note`:
+
+**Good:** Clear, Few clouds, Partly cloudy, Partly cloudy
+
+**Quite good:** Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist
+
+**Quite bad:** Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain + Scattered clouds
+
+**Bad:** Heavy Rain + Ice Pallets + Thunderstorm + Mist, Snow + Fog
+
+```{r data exploration 2, fig.width=10}
+plot(apply.daily(casual_xts, sum), type = "p", pch = all_data$weather, main = "Total number of causal renter per day, by weather")
+legend('topleft', legend=c("Good", "Quite good", "Quite bad","Bad"), pch=1:4, title = "Weather", cex = 0.5, pt.cex = 1)
+```
+
+
+
+
+
