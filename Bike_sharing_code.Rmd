@@ -114,11 +114,11 @@ aggregate(all_data$Casual.renter,by=list(Category=all_data$Weekday2), FUN=sum)
 We can see that there is a relevant peak if rents during the week end.
 
 ```{r data exploration 5, fig.width=10}
-with(all_data, plot(Weekday2, Casual.renter), main = "Casual renters by weekdays")
+with(all_data, plot(Weekday2, Casual.renter, main = "Casual renters by weekday"))
 ```
 
 At the same time, the weather conditions still suggests us a major role in determining the rent of a bike by casual bikers.
 
 ```{r data exploration 6, fig.width=10}
-coplot(Weekday2 ~ Casual.renter | weather2, data = all_data, rows=1, main = "Casual renters by weather conditions and weekday")
+coplot(Casual.renter ~ Weekday2 | weather2, data = all_data, rows=1, xlab = c("Causal renters per day", "Weather conditions"), ylab = "Weekday", xlim = c(0, 8), panel = function(x, y, ...){boxplot(y ~ x, add=TRUE)})
 ```
