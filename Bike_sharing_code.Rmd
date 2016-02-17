@@ -35,7 +35,7 @@ testing <- readWorksheet(work_book, sheet = "Testing")
 The Excel workbook is composed by three sheets: "Note" is the coodebook, "All data" is the main dataset, "Testing" is a second and smaller dataset.
 
 ```{r data description 1, results='hide'}
-summary(work_book)
+#summary(work_book) [check!]
 ```
 
 ### 3.1 "Note"
@@ -48,8 +48,16 @@ str(note)
 
 ###3.2 "all_data"
 
-The dataset `all_data` is composed by 17379 observation with 13 variables. `datetime` is profitably flaked by variables providing further information on the day of the week, the season and if we are talking about a working or a resting day. 
+The dataset `all_data` is composed by 17379 observation with 13 variables. `datetime` is profitably flanked by variables providing further information on the day of the week, the season and if we are talking about a working or a resting day.   
 
 ```{r data description 3}
 str(all_data)
+```
+
+###3.3 "testing"
+
+`testing` is a smaller 688 observations dataset. On this data, we will try do develop a model that could forecast the daily rental demand for both casual and registered renters.
+
+```{r data description 4}
+str(testing)
 ```
