@@ -93,7 +93,32 @@ plot(apply.daily(casual_xts, sum), type = "p", pch = all_data$weather, main = "T
 legend('topleft', legend=c("Good", "Quite good", "Quite bad","Bad"), pch=1:4, title = "Weather", cex = 0.5, pt.cex = 1)
 ```
 
+The bike renting follows, unsurprisingly, a seasonal trend. At the same time, the weather condition is likely to be a strong element concurring in determining the amount of rents.
 
+Such an hypothesis is supported by a simple observation of the frequency of the rents according to the weather conditions. 
 
+```{r data exploration 3}
+all_data$weather2 <- all_data$weather
+all_data$weather2 <- factor(all_data$weather2, levels = c(1,2,3,4), labels = c("good", "quite_good", "quite_bad", "bad"))
+aggregate(all_data$Casual.renter,by=list(Category=all_data$weather2), FUN=sum)
+```
 
+At the same time, could be interesting an observation of the number of casual rental according to the day of the week.
 
+```{r data exploration 4}
+all_data$Weekday2 <- all_data$Weekday
+all_data$Weekday2 <- factor(all_data$Weekday2, levels = c(1,2,3,4,5,6,7), labels = c("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"))
+aggregate(all_data$Casual.renter,by=list(Category=all_data$Weekday2), FUN=sum)
+```
+
+We can see that there is a relevant peak if rents during the week end.
+
+```{r data exploration 5, fig.width=10}
+with(all_data, plot(Weekday2, Casual.renter), main = "Casual renters by weekdays")
+```
+
+At the same time, the weather conditions still suggests us a major role in determining the rent of a bike by casual bikers.
+
+```{r data exploration 6, fig.width=10}
+coplot(Weekday2 ~ Casual.renter | weather2, data = all_data, rows=1, main = "Casual renters by weather conditions and weekday")
+```
