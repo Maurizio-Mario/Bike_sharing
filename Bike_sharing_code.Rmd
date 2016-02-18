@@ -74,7 +74,7 @@ In first place we load the `xts` package, that will help us in manage the time s
 ```{r data exploration 1, results='hide'}
 library(xts)
 casual_xts<- xts(all_data$Casual.renter, all_data$datetime)
-regular_xts<- xts(all_data$Regular.renter, all_data$datetime)
+regular_xts<- xts(all_data$Registered.renter, all_data$datetime)
 ```
 
 We think that the weather could be could be a relevat incentive to the use of the bike. Hence, we are going to plot the total number of bike renter per day. The plot could be more readable by plotting their number by week, but we choose this time format in order to make the plots in line with the requests of the second part of the assignment.
@@ -89,16 +89,19 @@ We think that the weather could be could be a relevat incentive to the use of th
 
 **Bad:** Heavy Rain + Ice Pallets + Thunderstorm + Mist, Snow + Fog
 
+The distribution let us deduce that the casual renters are more interested in enjoying the bike during beautiful days. It let us imagine a recreational use of the rent service.
+
 ```{r data exploration 2, fig.width=10}
 
 plot(apply.daily(casual_xts, sum), type = "p", pch = all_data$weather, main = "Total number of causal renters per day, by weather")
 legend('topleft', legend=c("Good", "Quite good", "Quite bad","Bad"), pch=1:4, title = "Weather", cex = 0.5, pt.cex = 1)
 ```
 
+With registerd users this quality is less evident. It suggest that the rent service represents a real daily transport mode, to be used even with non-optimal weather conditions.
+
 ```{r data exploration 2a, fig.width=10}
-## ADJUST TIME SERIES
-#plot(apply.daily(regular_xts, sum), type = "p", pch = all_data$weather, main = "Total number of regular renters per day, by weather")
-#legend('topleft', legend=c("Good", "Quite good", "Quite bad","Bad"), pch=1:4, title = "Weather", cex = 0.5, pt.cex = 1))
+plot(apply.daily(regular_xts, sum), type = "p", pch = all_data$weather, main = "Total number of regular renters per day, by weather")
+legend('topleft', legend=c("Good", "Quite good", "Quite bad","Bad"), pch=1:4, title = "Weather", cex = 0.5, pt.cex = 1)
 ```
 
 The bike renting follows, unsurprisingly, a seasonal trend. At the same time, the weather condition is likely to be a strong element concurring in determining the amount of rents.
